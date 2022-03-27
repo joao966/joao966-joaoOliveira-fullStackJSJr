@@ -36,7 +36,14 @@ const updateUser = async (id, email, password) => {
   }
 };
 
-const excludeUser = async (_id) => {};
+const excludeUser = async (id) => {
+  try {
+    const result = await knex('users').where('id', '=', id).del();
+    return result;
+  } catch (error) {
+    console.error('update user error: ', error);
+  }
+};
 
 const getUserById = async (id) => {
   try {

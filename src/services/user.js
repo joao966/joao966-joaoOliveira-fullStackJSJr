@@ -1,4 +1,10 @@
-const { getAllUser, getUserByEmail, createUser, getUserById, updateUser } = require('../models');
+const { getAllUser,
+  getUserByEmail,
+  createUser,
+  getUserById,
+  updateUser,
+  excludeUser,
+} = require('../models');
 
 const { errorGeneric, errorBusiness, notFound } = require('../helpers/errors');
 
@@ -36,6 +42,16 @@ const validateUpdate = async (id, email, password) => {
   return userCreated;
 };
 
-const validateExclude = async (_id, _email, _password) => {};
+const validateExclude = async (id, email, password) => {
+  const isUser = await getUserById(id);
+
+  if (!isUser.length) {
+    return notFound('User not found');
+  }
+
+  const userCreated = await excludeUser(id, email, password);
+
+  return userCreated;
+};
 
 module.exports = { getAll, validadeCreate, validateUpdate, validateExclude, getById };
