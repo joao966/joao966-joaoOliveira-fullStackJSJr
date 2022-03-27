@@ -28,7 +28,23 @@ const create = async (req, res, next) => {
   return res.status(201).json({ message: 'usuário criado com sucesso!', user: newUser });
 };
 
-const update = async (_req, _res, _next) => {};
+const update = async (req, res, next) => {
+  const { email, password } = req.body;
+  const { id } = req.params;
+
+  const createdUser = await service.validateUpdate(id, email, password);
+
+  if (createdUser.isError) {
+    return next(createdUser);
+  }
+
+  const newUser = {
+    email,
+    password,
+  };
+
+  return res.status(200).json({ message: 'usuário editado com sucesso!', user: newUser });
+};
 
 const exclude = async (_req, _res, _next) => {};
 
