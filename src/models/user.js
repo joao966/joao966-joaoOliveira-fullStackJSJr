@@ -9,9 +9,23 @@ const getAllUser = async () => {
   }
 };
 
-const getUserByEmail = async (_email) => {};
+const getUserByEmail = async (email) => {
+  try {
+    const result = await knex('users').where('email', email);
+    return result;
+  } catch (error) {
+    console.error('get user by email error: ', error);
+  }
+};
 
-const createUser = async (_email, _password) => {};
+const createUser = async (email, password) => {
+  try {
+    const result = await knex('users').insert({ email, password });
+    return result;
+  } catch (error) {
+    console.error('create user error: ', error);
+  }
+};
 
 const updateUser = async (_id, _email, _password) => {};
 

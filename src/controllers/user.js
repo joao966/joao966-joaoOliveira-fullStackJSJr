@@ -11,7 +11,22 @@ const getAll = async (_req, res, next) => {
 
 const getById = async (_req, _res, _next) => {};
 
-const create = async (_req, _res, _next) => {};
+const create = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  const createdUser = await service.validadeCreate(email, password);
+
+  if (createdUser.isError) {
+    return next(createdUser);
+  }
+
+  const newUser = {
+    email,
+    password,
+  };
+
+  return res.status(201).json({ message: 'usuário criado com sucesso!', user: newUser });
+};
 
 const update = async (_req, _res, _next) => {};
 
