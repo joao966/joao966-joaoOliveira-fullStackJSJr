@@ -16,7 +16,14 @@ const getAll = async () => {
   return result;
 };
 
-const getById = async (_id) => {};
+const getById = async (id) => {
+  const result = await getUserById(id);
+
+  if (!result.length) {
+    return errorGeneric('user not found!');
+  }
+  return result;
+};
 
 const validadeCreate = async (email, password) => {
   const isUser = await getUserByEmail(email);
