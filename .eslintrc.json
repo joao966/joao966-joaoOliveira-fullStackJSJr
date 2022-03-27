@@ -1,0 +1,6 @@
+//usando padrão de lint da Trybe
+{
+  "extends": [
+    "trybe-backend"
+  ]
+}

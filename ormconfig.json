@@ -1,0 +1,10 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "joao_gui",
+    "password": "joao_gui",
+    "database": "project_contele",
+    "synchronize": true,
+    "logging": false
+  }
