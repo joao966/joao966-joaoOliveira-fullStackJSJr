@@ -1,6 +1,6 @@
-const { getAllUser, getUserByEmail, createUser } = require('../models');
+const { getAllUser, getUserByEmail, createUser, getUserById, updateUser } = require('../models');
 
-const { errorGeneric, errorBusiness } = require('../helpers/errors');
+const { errorGeneric, errorBusiness, notFound } = require('../helpers/errors');
 
 const getAll = async () => {
   const result = await getAllUser();
@@ -24,7 +24,17 @@ const validadeCreate = async (email, password) => {
   return userCreated;
 };
 
-const validateUpdate = async (_id, _email, _password) => {};
+const validateUpdate = async (id, email, password) => {
+  const isUser = await getUserById(id);
+ 
+  if (!isUser.length) {
+    return notFound('User not found');
+  }
+
+  const userCreated = await updateUser(id, email, password);
+
+  return userCreated;
+};
 
 const validateExclude = async (_id, _email, _password) => {};
 
