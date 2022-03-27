@@ -9,7 +9,16 @@ const getAll = async (_req, res, next) => {
   return res.status(200).json({ message: 'success', result });
 };
 
-const getById = async (_req, _res, _next) => {};
+const getById = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await service.getById(id);
+
+  if (result.isError) {
+    return next(result);
+  }
+
+  return res.status(200).json({ message: 'success', result });
+};
 
 const create = async (req, res, next) => {
   const { email, password } = req.body;
