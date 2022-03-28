@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDoc = require('./swagger.json');
 
 const { PORT } = process.env;
 
@@ -9,6 +11,8 @@ const router = require('./src/routers');
 const middleError = require('./src/middlewares/error');
 
 const app = express();
+
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 app.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

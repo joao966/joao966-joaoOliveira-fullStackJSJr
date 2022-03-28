@@ -1,0 +1,210 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API para manilupar informações sobre usuários",
+    "description": "API desenvolvida para listar, criar, editar e deletar usuários!",
+    "contact": {
+      "email": "joaooliveira966@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3001",
+      "description": "Ambiente de desenvolvimento"
+    }
+  ],
+  "paths": {
+    "/api/v1/users": {
+      "get": {
+        "sumary": "listagem de usuários",
+        "description": "essa rota é responsavél por listar todos os usuários",
+        "tags": ["users"],
+        "responses": {
+          "403":{
+            "description":  "ops, algo deu errado!"
+          },
+          "500": {
+            "description": "erro interno do servidor"
+          },
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/users"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "sumary": "listagem de usuários",
+        "description": "essa rota é responsavél por listar todos os usuários",
+        "tags": ["users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/users"
+              },
+              "examples": {
+                "usuário": {
+                  "value": {
+                    "email": "adalovelace@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "403":{
+            "description":  "ops, algo deu errado!"
+          },
+          "500": {
+            "description": "erro interno do servidor"
+          },
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/users"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/{id}": {
+      "get": {
+        "sumary": "listagem deum único usuário",
+        "description": "essa rota é responsavél por listar um único usuário",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do usuario",
+            "required": true
+          }
+        ], 
+        "responses": {
+          "403":{
+            "description":  "ops, algo deu errado!"
+          },
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/users"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "sumary": "edição do usuário",
+        "description": "essa rota é responsavél por editar um usuário",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do usuario",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/users"
+              },
+              "examples": {
+                "usuário": {
+                  "value": {
+                    "email": "adalovelace@gmail.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        }, 
+        "responses": {
+          "403":{
+            "description":  "ops, algo deu errado!"
+          },
+          "200": {
+            "description": "usuário editado com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/users"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "sumary": "deleção do usuário",
+        "description": "essa rota é responsavél por deletar um usuário",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do usuario",
+            "required": true
+          }
+        ], 
+        "responses": {
+          "403":{
+            "description":  "ops, algo deu errado!"
+          },
+          "200": {
+            "description": "usuário deletado com sucesso!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/users"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "users": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -48,6 +48,7 @@ const excludeUser = async (id) => {
 const getUserById = async (id) => {
   try {
     const result = await knex('users').where('id', id);
+    // console.log('byid: ', result);
     return result;
   } catch (error) {
     console.error('get user by id error: ', error);
