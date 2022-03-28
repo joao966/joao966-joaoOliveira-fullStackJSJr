@@ -1,6 +1,12 @@
-const { getAllUser, getUserByEmail, createUser } = require('../models');
+const { getAllUser,
+  getUserByEmail,
+  createUser,
+  getUserById,
+  updateUser,
+  excludeUser,
+} = require('../models');
 
-const { errorGeneric, errorBusiness } = require('../helpers/errors');
+const { errorGeneric, errorBusiness, notFound } = require('../helpers/errors');
 
 const getAll = async () => {
   const result = await getAllUser();
@@ -10,7 +16,14 @@ const getAll = async () => {
   return result;
 };
 
-const getById = async (_id) => {};
+const getById = async (id) => {
+  const result = await getUserById(id);
+
+  if (!result.length) {
+    return errorGeneric('user not found!');
+  }
+  return result;
+};
 
 const validadeCreate = async (email, password) => {
   const isUser = await getUserByEmail(email);
@@ -24,8 +37,28 @@ const validadeCreate = async (email, password) => {
   return userCreated;
 };
 
-const validateUpdate = async (_id, _email, _password) => {};
+const validateUpdate = async (id, email, password) => {
+  const isUser = await getUserById(id);
+ 
+  if (!isUser.length) {
+    return notFound('User not found');
+  }
 
-const validateExclude = async (_id, _email, _password) => {};
+  const userCreated = await updateUser(id, email, password);
+
+  return userCreated;
+};
+
+const validateExclude = async (id, email, password) => {
+  const isUser = await getUserById(id);
+
+  if (!isUser.length) {
+    return notFound('User not found');
+  }
+
+  const userCreated = await excludeUser(id, email, password);
+
+  return userCreated;
+};
 
 module.exports = { getAll, validadeCreate, validateUpdate, validateExclude, getById };

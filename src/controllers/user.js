@@ -9,7 +9,16 @@ const getAll = async (_req, res, next) => {
   return res.status(200).json({ message: 'success', result });
 };
 
-const getById = async (_req, _res, _next) => {};
+const getById = async (req, res, next) => {
+  const { id } = req.params;
+  const result = await service.getById(id);
+
+  if (result.isError) {
+    return next(result);
+  }
+
+  return res.status(200).json({ message: 'success', result });
+};
 
 const create = async (req, res, next) => {
   const { email, password } = req.body;
@@ -28,9 +37,35 @@ const create = async (req, res, next) => {
   return res.status(201).json({ message: 'usuário criado com sucesso!', user: newUser });
 };
 
-const update = async (_req, _res, _next) => {};
+const update = async (req, res, next) => {
+  const { email, password } = req.body;
+  const { id } = req.params;
 
-const exclude = async (_req, _res, _next) => {};
+  const createdUser = await service.validateUpdate(id, email, password);
+
+  if (createdUser.isError) {
+    return next(createdUser);
+  }
+
+  const newUser = {
+    email,
+    password,
+  };
+
+  return res.status(200).json({ message: 'usuário editado com sucesso!', user: newUser });
+};
+
+const exclude = async (req, res, next) => {
+  const { id } = req.params;
+
+  const createdUser = await service.validateExclude(id);
+
+  if (createdUser.isError) {
+    return next(createdUser);
+  }
+
+  return res.status(200).json({ message: 'usuário excluído com sucesso!' });
+};
 
 module.exports = {
   getAll,

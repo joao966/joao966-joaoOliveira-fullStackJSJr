@@ -32,6 +32,7 @@
     "knex": "^1.0.4",
     "mongodb": "^3.6.5",
     "pg": "^8.7.3",
-    "rescue": "^6.0.4"
+    "rescue": "^6.0.4",
+    "swagger-ui-express": "^4.3.0"
   }
 }

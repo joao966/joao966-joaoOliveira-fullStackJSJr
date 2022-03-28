@@ -6,7 +6,7 @@ module.exports = (err, _req, res, _next) => {
   }
 
   if (err.isError) {
-    return res.status(422).json({
+    return res.status(403).json({
       error: { message: err.message },
     });
   }

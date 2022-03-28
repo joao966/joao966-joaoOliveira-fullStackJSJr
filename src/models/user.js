@@ -27,11 +27,33 @@ const createUser = async (email, password) => {
   }
 };
 
-const updateUser = async (_id, _email, _password) => {};
+const updateUser = async (id, email, password) => {
+  try {
+    const result = await knex('users').where('id', '=', id).update({ email, password });
+    return result;
+  } catch (error) {
+    console.error('update user error: ', error);
+  }
+};
 
-const excludeUser = async (_id) => {};
+const excludeUser = async (id) => {
+  try {
+    const result = await knex('users').where('id', '=', id).del();
+    return result;
+  } catch (error) {
+    console.error('update user error: ', error);
+  }
+};
 
-const getUserById = async (_id) => {};
+const getUserById = async (id) => {
+  try {
+    const result = await knex('users').where('id', id);
+    // console.log('byid: ', result);
+    return result;
+  } catch (error) {
+    console.error('get user by id error: ', error);
+  }
+};
 
 module.exports = {
   getAllUser,
