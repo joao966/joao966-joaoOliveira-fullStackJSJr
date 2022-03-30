@@ -1,17 +1,7 @@
-#
+FROM node:14.5.0
 
-#
-FROM node:alpine
-WORKDIR /usr/app
+ADD start.sh /start.sh
 
-COPY package*.json ./
-RUN npm install
+RUN chmod 755 /start.sh
 
-COPY . .
-
-COPY ormconfig.docker.json ./ormconfig.json
-COPY .env .
-
-EXPOSE 3001
-
-CMD ["npm", "start"]
+CMD ["/start.sh"]
