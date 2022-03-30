@@ -1,18 +1,34 @@
-version: "3"
+version: '3.1'
 services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: stripe-example
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-  web:
-    image: project_contele
+  app:
+    build: .
+    container_name: project_contele_full_stack
     depends_on:
       - db
     ports:
-      - "3001:3001"
+        - 3001:3001
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=contele
+      - POSTGRES_PORT=5432
+      - WAIT_HOSTS=db:5432
+    volumes:
+      - .:/src/
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=contele
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/database:/app/api
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+
