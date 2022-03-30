@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "docker": "sudo docker-compose up",
     "test": "mocha ./tests/**/*$NAME*.test.js --exit",
     "start": "node index.js",
     "debug": "nodemon index.js",
