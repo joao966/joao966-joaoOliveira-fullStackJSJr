@@ -4,6 +4,7 @@ require('dotenv');
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
+// console.log('env:', process.env.POSTGRES_USER);
 module.exports = {
   development: {
    client: 'postgresql',
