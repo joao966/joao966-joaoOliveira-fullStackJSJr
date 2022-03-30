@@ -44,9 +44,6 @@ WAIT_HOSTS=db_project_contele:5432
 ```
 
 
-
-
-
 - Para rodar localmente você precisará ter o Postgres instalado e um banco de dados criado.
 
 Comandos para rodar local:
@@ -57,16 +54,16 @@ $ git clone https://github.com/joao966/joao966-joaoOliveira-fullStackJSJr.git
 # instale as dendências
 $ npm install
 
-# execute a migrate e a seed
-$ npm run prestart
+# execute a migrate
+$ npx knex migrate:latest
 
+# execute a seed
+$ npx knex seed:run
 
 # rode o projeto
 $ npm run debug
 
 ```
-
-
 
 
 ### DOCKER
@@ -77,5 +74,20 @@ Comandos para executar virtual:
 # instala as dependencias inicia o banco roda a migrate e a seed e sobe o servidor da API
 $ npm run docker
 ```
+
+
+### DOCUMENTAÇÃO
+
+* A Documentação está disponível na rota: "/api-doc".
+
+<img src="src/assets/swagger.png" width="300px"/>
+
+* Acesse o painel admin do banco de dados na rota: localhost:8080
+
+<img src="src/assets/paineldb.png" width="300px"/>
+
+
+
+
 
 Feito com ❤️ por João Guilherme de Oliveira!

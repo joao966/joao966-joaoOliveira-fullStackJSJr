@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npx knex migrate:latest && npx knex seed:run",
     "docker": "sudo docker-compose up",
     "test": "mocha ./tests/**/*$NAME*.test.js --exit",
     "start": "node index.js",
