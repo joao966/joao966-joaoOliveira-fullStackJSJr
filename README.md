@@ -28,49 +28,54 @@ As seguintes ferramentas foram usadas na construção do projeto:
 Antes de começar, você vai precisar ter o [Git](https://git-scm.com) instalado em sua máquina.
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).
 
-```bash
-# Clone este repositório
-$ git clone git@github.com:joao966/joao966-joaoOliveira-fullStackJSJr.git
-
-# Instale as dependências
-$ npm install
-
-```
-
-
 ### IMPORTANTE
 
-* Vocẽ precisará ter o Postgres instalado e um banco de dados criado. As seguintes variaveis de ambiente são nescessarias.
+* As seguintes variaveis de ambiente são nescessarias.
 
 ```bash
 # variavesis de ambiente
-PORT=port
-HOST=host
-POSTGRES_USER=user
-POSTGRES_PASSWORD=password
-POSTGRES_DB=banco
+PORT=3001
+POSTGRES_HOST=db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=123456
+POSTGRES_DB=contele
+POSTGRES_PORT=5432
+WAIT_HOSTS=db_project_contele:5432
 ```
 
+
+
+
+
+- Para rodar localmente você precisará ter o Postgres instalado e um banco de dados criado.
+
+Comandos para rodar local:
 ```bash
-# migrate para criar a tabela no banco de dados
-$ 
+# Clone este repositório
+$ git clone https://github.com/joao966/joao966-joaoOliveira-fullStackJSJr.git
 
-# rodar o projeto em ambiente de desenvolvimento
+# instale as dendências
+$ npm install
+
+# execute a migrate e a seed
+$ npm run prestart
+
+
+# rode o projeto
 $ npm run debug
+
 ```
+
 
 
 
 ### DOCKER
-Para utilizar o docker rode os seguintes comandos:
+* Para rodar em uma máquina virtual você precisará ter o Docker e o Docker-Compose instalado.
 
+Comandos para executar virtual:
 ```bash
-# rodar a máquina virtual do docker
-$ 
+# instala as dependencias inicia o banco roda a migrate e a seed e sobe o servidor da API
+$ npm run docker
 ```
-
-
-
-
 
 Feito com ❤️ por João Guilherme de Oliveira!
